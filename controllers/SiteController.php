@@ -136,7 +136,7 @@ class SiteController extends Controller
 
     }
       public function actionProduct(){
-            $product=Product::findOne(1);
+            $product=Product::findOne(['id'=>$id]);
 
             return $this->render('product',[
                 'product'=>$product
@@ -146,4 +146,18 @@ class SiteController extends Controller
       public function actionProductList(){
           return $this->render('product-list');
       }
+
+
+    public function actionCategory($category){
+        $category = Category::find()->where([
+            'active'=>1,
+            'name'=>$category
+        ])->one();
+        $product = Product::find()->where(['category_id'=>$category->id])->all();
+        return $this->render('category', [
+            'category'=>$category,
+            'products'=>$product
+        ]);
+        print_r($category);
+    }
 }
