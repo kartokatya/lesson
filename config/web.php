@@ -49,6 +49,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'tovar/<id:\d+>/brand/<brand:\w+>'=>'site/product',
+                //'category'=>'site/product-list'
             ],
         ],
 

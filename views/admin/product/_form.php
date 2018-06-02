@@ -21,6 +21,8 @@ $categories=\yii\helpers\ArrayHelper::map($categories,'id','name');
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'file')->fileInput() ?>
+
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'price')->textInput() ?>

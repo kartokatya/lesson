@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -128,6 +129,10 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+
+
+
+
     public function actionPage(){
         $text="Курс по Yii2 Framework";
         return $this->render('page',[
@@ -143,9 +148,6 @@ class SiteController extends Controller
             ]);
 
       }
-      public function actionProductList(){
-          return $this->render('product-list');
-      }
 
 
     public function actionCategory($category){
@@ -160,4 +162,35 @@ class SiteController extends Controller
         ]);
         print_r($category);
     }
+
+    public function actionProductList($cat=null)
+    {
+        $products=Product::find();
+        if($cat){
+            $products=Product::find()->where(['category_id'=>$cat])->all();
+        }
+        $products=$products->all();
+       // $products = Product::find()->select(['id'])->column();
+
+        $categories=Category::find()->all();
+        return $this->render('product_list',[
+            'products'=>$products,
+            'categories'=>$categories
+        ]);
+    }
+
+    public function actionSignUp(){
+        $user=new User();
+
+        if ($user->load(Yii::$app->request->post())){
+            $user->setPassword($user->password);
+            $user->save();
+            return $this->redirect(['site/login']);
+        }
+        $this->render('sign-up',[
+            'user'=>$user
+        ]);
+    }
 }
+
+

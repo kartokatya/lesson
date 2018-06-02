@@ -32,6 +32,7 @@ class AppAsset extends AssetBundle
         'js/jquery.flexisel.js',
         'js/jquery.flexslider.js',
         'js/simpleCart.min.js',
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
