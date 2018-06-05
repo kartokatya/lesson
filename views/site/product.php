@@ -20,7 +20,7 @@ $this->title=$roduct->title?:"Товары в Москве";
                 <div class="flexslider">
                     <ul class="slides">
                         <li data-thumb="images/s11.jpeg">
-                            <img src="images/s11.jpeg" />
+                            <img src="/images/s11.jpeg" />
                         </li>
                         <li data-thumb="images/s22.jpeg">
                             <img src="images/s22.jpeg" />

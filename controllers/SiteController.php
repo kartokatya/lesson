@@ -8,6 +8,7 @@ use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -140,8 +141,13 @@ class SiteController extends Controller
         ]);
 
     }
-      public function actionProduct(){
+      public function actionProduct($id){
             $product=Product::findOne(['id'=>$id]);
+
+
+            if (!$product){
+                throw new NotFoundHttpException('404');
+            }
 
             return $this->render('product',[
                 'product'=>$product
@@ -150,7 +156,7 @@ class SiteController extends Controller
       }
 
 
-    public function actionCategory($category){
+   /* public function actionCategory($category){
         $category = Category::find()->where([
             'active'=>1,
             'name'=>$category
@@ -161,7 +167,7 @@ class SiteController extends Controller
             'products'=>$product
         ]);
         print_r($category);
-    }
+    }*/
 
     public function actionProductList($cat=null)
     {
